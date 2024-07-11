@@ -1,0 +1,14 @@
+services:
+  
+  redis:
+    container_name: redis-${NAME_PROJECT}
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - notificationservice_backend
+
+networks:
+  notificationservice_backend:
+    external: true
+

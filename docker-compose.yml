@@ -1,0 +1,19 @@
+services:
+  
+  hyperf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: php bin/hyperf.php server:watch
+    ports:
+      - 9501:9501
+      - 9502:9502
+    restart: always
+    volumes:
+      - .:/data/project
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

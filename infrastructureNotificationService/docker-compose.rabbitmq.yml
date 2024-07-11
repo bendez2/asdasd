@@ -1,0 +1,19 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    container_name: rabbitmq-${NAME_PROJECT}
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit disk_free_limit 2147483648
+    volumes:
+      - ./../storage/rabbitmq:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - notificationservice_backend
+
+networks:
+  notificationservice_backend:
+    external: true

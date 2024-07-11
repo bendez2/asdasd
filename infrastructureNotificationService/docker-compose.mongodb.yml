@@ -1,0 +1,21 @@
+services:
+  
+  mongodb:
+    container_name: mongodb-${NAME_PROJECT}
+    image: mongo:latest
+    ports:
+      - "${MONGODB_PORT}:27017"
+    volumes:
+      - ./../storage/mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    networks:
+      - notificationservice_backend
+
+volumes:
+  mongodb_data:
+
+networks:
+  notificationservice_backend:
+    external: true

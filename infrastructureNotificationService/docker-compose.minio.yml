@@ -1,0 +1,23 @@
+services:
+ 
+  minio:
+    container_name: minio-${NAME_PROJECT}
+    image: minio/minio:latest
+    ports:
+      - "${MINIO_PORT}:9000"
+      - "9090:9090"
+    command: server /data --console-address ":9090"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ./../storage/minio/data:/data
+    networks:
+      - hyperfservice_backend
+      
+volumes:
+  minio_data:
+
+networks:
+  hyperfservice_backend:
+    external: true
