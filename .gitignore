@@ -13,4 +13,5 @@ vendor/
 .LICENSE
 *.cache
 .vscode/
-.storage/
+/storage/*
+!/storage/
